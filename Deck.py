@@ -3,7 +3,7 @@ A deck of Cards, 52 total, 13 of each suit
 '''
 #from math import random
 from random import shuffle
-from blackjack.card import Card
+from Card import Card
 
 class Deck():
 
@@ -17,19 +17,20 @@ class Deck():
         Creates a fresh deck of 52 cards
         '''
         cardface = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
-        cardvalues = [2,3,4,5,6,7,8,9,10,10,10,10,11]
+        cardvalues = [2,3,4,5,6,7,8,9,10,10,10,10,1]
         cardsuits = ['S','C','D','H']
+
+        cardfaceandvalues = [(cardface[i],cardvalues[i]) for i in range(len(cardface))]
 
         self.deck = []
 
         # insert a Card object for each suit,face,value combination into the deck
         
         for suit in cardsuits: 
-            for face in cardface: 
-                for value in cardvalues:
-                    #thiscard = Card(suit,face,value)
-                    #self.deck.append(thiscard)
-                    self.deck.append(Card(suit,face,value))
+            for face, value in cardfaceandvalues:
+                self.deck.append(Card(suit,face,value))
+            #for face in cardface: 
+            #    for value in cardvalues:
 
         # shuffle the deck
         self.shuffle()

@@ -11,6 +11,8 @@ class Player():
         self.bankroll = bankroll
         self.busted = busted
         self.playing = playing
+        self.bet = 0
+        self.hands = []
 
 
     def get_id(self):
@@ -70,9 +72,7 @@ class Player():
         '''
         Player doubles or splits hand, placing an additional bet of the same value and reducing player bankroll accordingly
         '''
-        #how will this handle insufficient bankroll????
-        self.bet(self.bet)
-        return self.bet
+        self.set_bet(self.bet)
 
 
     def win(self,amount=10):
@@ -82,11 +82,28 @@ class Player():
         self.bankroll += amount
 
 
+    def ask_for_action(self,actions='Hit, Stay'):
+        '''
+        Ask player what action they would like to take on their hand
+        '''
+        if actions == 'Busted!':
+            pass
+        while True:
+            try:
+                dothis = input(f'{self.name}, what would you like do? {actions}  ').lower()
+            except:
+                print("Whoops! That's not a valid move. Try again!")
+            else:
+                #make sure player has sufficient bankroll to cover the bet
+                if (dothis == 'double' or dothis == 'split') and self.bankroll >= self.bet:
+                    #place additional bet and reduce bankroll by same amount
+                    self.double_or_split()
+                #return input                 
+                return dothis
+
+
     def __str__(self): #player_details(self):
         '''
         Creates a readable form of a player object when printed
         '''
-        print(f'Player Name: {self.name}')
-        print(f'Bankroll: {self.bankroll}')
-        print(f'Busted: {self.busted}')
-        print(f'Playing: {self.playing}')
+        return f'Player Name: {self.name}\nBankroll: {self.bankroll}\nBusted: {self.busted}\nPlaying: {self.playing}'

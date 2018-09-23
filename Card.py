@@ -3,10 +3,10 @@ A card from a deck of cards
 '''
 class Card():
 
-    def __init__(self,*args):
-        self.suit = args[0]
-        self.face = args[1]
-        self.value = args[2]
+    def __init__(self,suit,face,value):
+        self.suit = suit
+        self.face = face
+        self.value = value
 
     def get_value(self):
         return self.value
