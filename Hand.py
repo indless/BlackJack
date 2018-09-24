@@ -117,17 +117,17 @@ class Hand():
         '''
         Returna a string containing a list of the available actions
         '''
-        actions = ''
+        actions = []
         if self.bust:
-            actions = 'Busted!'
+            actions = ['Busted!']
         elif self.blkjck:
-            actions = 'BlackJack!'
+            actions = ['BlackJack!']
         elif self.stay:
-            actions = 'Stay'
+            actions = ['Staying']
         else:
-            actions = 'Hit, Stay, Double'
+            actions = ['Hit', 'Stay', 'Double']
             if self.splitable():
-                actions = actions + ', Split'
+                actions.append('Split')
 
         return actions
 
