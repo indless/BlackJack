@@ -31,10 +31,6 @@ def setup_game():
         blackjackplayers.append(Player(playerid=p))
         #set name of each Player
         blackjackplayers[p].set_name()
-    
-    #initialize Dealer | adds dealer to the end so Dealer will be dealt last
-    #dealer = Player(name='Dealer')
-    #blackjackplayers.append(dealer)
 
 
 def play_a_round():
